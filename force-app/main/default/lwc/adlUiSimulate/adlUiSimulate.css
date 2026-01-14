@@ -1,0 +1,104 @@
+.slds-page-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddbda;
+    padding: 1rem;
+}
+
+.slds-page-header__name-meta {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #080707;
+    margin-top: 0.25rem;
+}
+
+.slds-card {
+    border-radius: 0.25rem;
+}
+
+.slds-form-element__label {
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.slds-required {
+    color: #c23934;
+}
+
+.slds-pill_container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.slds-table_fixed-layout {
+    table-layout: fixed;
+}
+
+.slds-table thead th {
+    background-color: #fafaf9;
+    font-weight: 700;
+    color: #3e3e3c;
+    padding: 0.5rem;
+}
+
+.slds-table tbody td {
+    padding: 0.5rem;
+}
+
+.slds-hint-parent:hover {
+    background-color: #fafaf9;
+}
+
+.slds-box_x-small {
+    padding: 1rem;
+}
+
+.slds-theme_shade {
+    background-color: #f3f2f2;
+}
+
+.slds-text-body_regular a {
+    color: #0070d2;
+    text-decoration: none;
+}
+
+.slds-text-body_regular a:hover {
+    text-decoration: underline;
+}
+
+.slds-button_icon-border-filled {
+    border: 1px solid #dddbda;
+}
+
+.slds-scrollable_x {
+    overflow-x: auto;
+}
+
+/* Custom styling for better UX */
+.file-upload-container {
+    border: 2px dashed #dddbda;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.file-upload-container:hover {
+    border-color: #0070d2;
+    background-color: #fafaf9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slds-page-header__row {
+        flex-direction: column;
+    }
+    
+    .slds-page-header__col-actions {
+        margin-top: 1rem;
+    }
+    
+    .slds-table {
+        font-size: 0.875rem;
+    }
+}
