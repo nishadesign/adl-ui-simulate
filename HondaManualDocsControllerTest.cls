@@ -1,17 +1,17 @@
 @isTest
-private class HondaManualDocsControllerTest {
+private class AdlUiSimulateControllerTest {
     
     @TestSetup
     static void setupTestData() {
         // Create test data library
         Data_Library__c testLibrary = new Data_Library__c(
-            Name = 'Test Honda Manual Docs',
-            API_Name__c = 'test_honda_Manual_Docs',
+            Name = 'Test ADL UI Simulate',
+            API_Name__c = 'test_adl_UI_Simulate',
             Data_Space__c = 'Default',
             Data_Type__c = 'Files',
             Unstructured_Data_Model__c = 'test_adi_name_sidno',
             Status__c = 'In Progress',
-            Description__c = 'Test data library for Honda manuals'
+            Description__c = 'Test data library for ADL UI simulation'
         );
         insert testLibrary;
         
@@ -32,15 +32,15 @@ private class HondaManualDocsControllerTest {
     static void testSaveDataLibrary() {
         Test.startTest();
         
-        List<HondaManualDocsController.FileWrapper> files = new List<HondaManualDocsController.FileWrapper>();
-        HondaManualDocsController.FileWrapper file1 = new HondaManualDocsController.FileWrapper();
+        List<AdlUiSimulateController.FileWrapper> files = new List<AdlUiSimulateController.FileWrapper>();
+        AdlUiSimulateController.FileWrapper file1 = new AdlUiSimulateController.FileWrapper();
         file1.name = 'Test Manual.pdf';
         file1.size = '250 KB';
         file1.documentId = '069000000000001';
         files.add(file1);
         
         String filesJson = JSON.serialize(files);
-        String result = HondaManualDocsController.saveDataLibrary(
+        String result = AdlUiSimulateController.saveDataLibrary(
             'Default', 
             'Files', 
             'test_model',
@@ -49,17 +49,17 @@ private class HondaManualDocsControllerTest {
         
         Test.stopTest();
         
-        HondaManualDocsController.ResponseWrapper response = 
-            (HondaManualDocsController.ResponseWrapper) JSON.deserialize(
+        AdlUiSimulateController.ResponseWrapper response = 
+            (AdlUiSimulateController.ResponseWrapper) JSON.deserialize(
                 result, 
-                HondaManualDocsController.ResponseWrapper.class
+                AdlUiSimulateController.ResponseWrapper.class
             );
         
         System.assert(response.success, 'Save should succeed');
         System.assertNotEquals(null, response.recordId, 'Record ID should be returned');
         
         // Verify data library was created
-        List<Data_Library__c> libraries = [SELECT Id FROM Data_Library__c WHERE API_Name__c = 'honda_Manual_Docs'];
+        List<Data_Library__c> libraries = [SELECT Id FROM Data_Library__c WHERE API_Name__c = 'adl_UI_Simulate'];
         System.assertEquals(1, libraries.size(), 'Data library should be created');
     }
     
@@ -68,12 +68,12 @@ private class HondaManualDocsControllerTest {
         Data_Library__c testLibrary = [SELECT Id FROM Data_Library__c LIMIT 1];
         
         Test.startTest();
-        String result = HondaManualDocsController.getDataLibrary(testLibrary.Id);
+        String result = AdlUiSimulateController.getDataLibrary(testLibrary.Id);
         Test.stopTest();
         
         Data_Library__c library = (Data_Library__c) JSON.deserialize(result, Data_Library__c.class);
         System.assertNotEquals(null, library, 'Library should be returned');
-        System.assertEquals('Test Honda Manual Docs', library.Name, 'Name should match');
+        System.assertEquals('Test ADL UI Simulate', library.Name, 'Name should match');
     }
     
     @isTest
@@ -81,7 +81,7 @@ private class HondaManualDocsControllerTest {
         Data_Library__c testLibrary = [SELECT Id FROM Data_Library__c LIMIT 1];
         
         Test.startTest();
-        List<Data_Library_File__c> files = HondaManualDocsController.getDataLibraryFiles(testLibrary.Id);
+        List<Data_Library_File__c> files = AdlUiSimulateController.getDataLibraryFiles(testLibrary.Id);
         Test.stopTest();
         
         System.assertEquals(5, files.size(), 'Should return 5 files');
@@ -92,13 +92,13 @@ private class HondaManualDocsControllerTest {
         Data_Library_File__c testFile = [SELECT Id FROM Data_Library_File__c LIMIT 1];
         
         Test.startTest();
-        String result = HondaManualDocsController.deleteFile(testFile.Id);
+        String result = AdlUiSimulateController.deleteFile(testFile.Id);
         Test.stopTest();
         
-        HondaManualDocsController.ResponseWrapper response = 
-            (HondaManualDocsController.ResponseWrapper) JSON.deserialize(
+        AdlUiSimulateController.ResponseWrapper response = 
+            (AdlUiSimulateController.ResponseWrapper) JSON.deserialize(
                 result, 
-                HondaManualDocsController.ResponseWrapper.class
+                AdlUiSimulateController.ResponseWrapper.class
             );
         
         System.assert(response.success, 'Delete should succeed');
@@ -112,13 +112,13 @@ private class HondaManualDocsControllerTest {
         Data_Library__c testLibrary = [SELECT Id FROM Data_Library__c LIMIT 1];
         
         Test.startTest();
-        String result = HondaManualDocsController.updateStatus(testLibrary.Id, 'Active');
+        String result = AdlUiSimulateController.updateStatus(testLibrary.Id, 'Active');
         Test.stopTest();
         
-        HondaManualDocsController.ResponseWrapper response = 
-            (HondaManualDocsController.ResponseWrapper) JSON.deserialize(
+        AdlUiSimulateController.ResponseWrapper response = 
+            (AdlUiSimulateController.ResponseWrapper) JSON.deserialize(
                 result, 
-                HondaManualDocsController.ResponseWrapper.class
+                AdlUiSimulateController.ResponseWrapper.class
             );
         
         System.assert(response.success, 'Update should succeed');
@@ -132,7 +132,7 @@ private class HondaManualDocsControllerTest {
         Test.startTest();
         
         try {
-            String result = HondaManualDocsController.getDataLibrary('invalid_id');
+            String result = AdlUiSimulateController.getDataLibrary('invalid_id');
             System.assert(false, 'Should throw exception');
         } catch (AuraHandledException e) {
             System.assert(e.getMessage().contains('Error retrieving data library'), 'Should contain error message');

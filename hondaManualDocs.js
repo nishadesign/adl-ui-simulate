@@ -1,8 +1,8 @@
 import { LightningElement, track, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import deleteFile from '@salesforce/apex/HondaManualDocsController.deleteFile';
+import deleteFile from '@salesforce/apex/AdlUiSimulateController.deleteFile';
 
-export default class HondaManualDocs extends LightningElement {
+export default class AdlUiSimulate extends LightningElement {
     @api recordId;
     
     @track dataSpaceValue = 'Default';
@@ -13,8 +13,8 @@ export default class HondaManualDocs extends LightningElement {
     
     // Mock data for demonstration
     @track fileList = [
-        { id: '1', name: 'Honda CRV Manual', size: '34 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
-        { id: '2', name: 'Honda Odyssey manual', size: '340 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
+        { id: '1', name: 'ADL Sample Document', size: '34 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
+        { id: '2', name: 'UI Simulation Guide', size: '340 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
         { id: '3', name: 'Operating Manual', size: '400 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
         { id: '4', name: 'Marketing Manual', size: '880 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },
         { id: '5', name: 'Policy Docs', size: '889 KB', status: '', uploadedBy: '', uploadedOn: '', selected: false },

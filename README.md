@@ -1,4 +1,4 @@
-# Honda Manual Docs - Salesforce LWC Component
+# ADL UI Simulate - Salesforce LWC Component
 
 A fully interactive Salesforce Lightning Web Component for managing data libraries with file upload capabilities, built using SLDS (Salesforce Lightning Design System).
 
@@ -77,18 +77,18 @@ Using Salesforce CLI:
 cd your-project-directory
 
 # Create LWC component structure
-mkdir -p force-app/main/default/lwc/hondaManualDocs
+mkdir -p force-app/main/default/lwc/adlUiSimulate
 
 # Copy files to the component directory
-cp hondaManualDocs.html force-app/main/default/lwc/hondaManualDocs/
-cp hondaManualDocs.js force-app/main/default/lwc/hondaManualDocs/
-cp hondaManualDocs.css force-app/main/default/lwc/hondaManualDocs/
-cp hondaManualDocs.js-meta.xml force-app/main/default/lwc/hondaManualDocs/
+cp adlUiSimulate.html force-app/main/default/lwc/adlUiSimulate/
+cp adlUiSimulate.js force-app/main/default/lwc/adlUiSimulate/
+cp adlUiSimulate.css force-app/main/default/lwc/adlUiSimulate/
+cp adlUiSimulate.js-meta.xml force-app/main/default/lwc/adlUiSimulate/
 
 # Deploy Apex classes
 mkdir -p force-app/main/default/classes
-cp HondaManualDocsController.cls force-app/main/default/classes/
-cp HondaManualDocsControllerTest.cls force-app/main/default/classes/
+cp AdlUiSimulateController.cls force-app/main/default/classes/
+cp AdlUiSimulateControllerTest.cls force-app/main/default/classes/
 
 # Deploy to your org
 sfdx force:source:deploy -p force-app/main/default -u your-org-alias
@@ -102,21 +102,21 @@ Or use VS Code with Salesforce Extension Pack:
 
 1. Navigate to the Lightning App Builder
 2. Edit the desired page (App Page, Record Page, or Home Page)
-3. Drag the **hondaManualDocs** component onto the page
+3. Drag the **adlUiSimulate** component onto the page
 4. Save and activate the page
 
 ## 📁 Component Structure
 
 ```
-hondaManualDocs/
-├── hondaManualDocs.html          # Component template
-├── hondaManualDocs.js            # Component controller
-├── hondaManualDocs.css           # Component styles
-└── hondaManualDocs.js-meta.xml   # Component metadata
+adlUiSimulate/
+├── adlUiSimulate.html          # Component template
+├── adlUiSimulate.js            # Component controller
+├── adlUiSimulate.css           # Component styles
+└── adlUiSimulate.js-meta.xml   # Component metadata
 
 classes/
-├── HondaManualDocsController.cls      # Apex controller
-└── HondaManualDocsControllerTest.cls  # Apex test class
+├── AdlUiSimulateController.cls      # Apex controller
+└── AdlUiSimulateControllerTest.cls  # Apex test class
 ```
 
 ## ⚙️ Configuration
@@ -139,7 +139,7 @@ get acceptedFormats() {
 }
 ```
 
-To modify, update the `acceptedFormats` getter in `hondaManualDocs.js`.
+To modify, update the `acceptedFormats` getter in `adlUiSimulate.js`.
 
 ### Data Space Options
 
@@ -266,12 +266,12 @@ Deletes a file and its associated content document.
 
 ### Connecting to Real Apex Controller
 
-To connect the component to the Apex controller, add these imports to `hondaManualDocs.js`:
+To connect the component to the Apex controller, add these imports to `adlUiSimulate.js`:
 
 ```javascript
-import saveDataLibrary from '@salesforce/apex/HondaManualDocsController.saveDataLibrary';
-import getDataLibrary from '@salesforce/apex/HondaManualDocsController.getDataLibrary';
-import getDataLibraryFiles from '@salesforce/apex/HondaManualDocsController.getDataLibraryFiles';
+import saveDataLibrary from '@salesforce/apex/AdlUiSimulateController.saveDataLibrary';
+import getDataLibrary from '@salesforce/apex/AdlUiSimulateController.getDataLibrary';
+import getDataLibraryFiles from '@salesforce/apex/AdlUiSimulateController.getDataLibraryFiles';
 ```
 
 Then update the `handleSave` method:

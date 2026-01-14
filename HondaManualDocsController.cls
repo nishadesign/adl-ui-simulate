@@ -1,4 +1,4 @@
-public with sharing class HondaManualDocsController {
+public with sharing class AdlUiSimulateController {
     
     /**
      * Save data library configuration
@@ -13,8 +13,8 @@ public with sharing class HondaManualDocsController {
             // Create or update Data Library record
             // Note: Replace with your actual custom object API name
             Data_Library__c dataLibrary = new Data_Library__c();
-            dataLibrary.Name = 'Honda Manual Docs';
-            dataLibrary.API_Name__c = 'honda_Manual_Docs';
+            dataLibrary.Name = 'ADL UI Simulate';
+            dataLibrary.API_Name__c = 'adl_UI_Simulate';
             dataLibrary.Data_Space__c = dataSpace;
             dataLibrary.Data_Type__c = dataType;
             dataLibrary.Unstructured_Data_Model__c = unstructuredDataModel;
