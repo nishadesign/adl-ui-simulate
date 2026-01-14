@@ -1,5 +1,6 @@
 import { LightningElement, track, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import deleteFile from '@salesforce/apex/HondaManualDocsController.deleteFile';
 
 export default class HondaManualDocs extends LightningElement {
     @api recordId;
@@ -168,8 +169,43 @@ export default class HondaManualDocs extends LightningElement {
     handleRowAction(event) {
         const fileId = event.currentTarget.dataset.id;
         const file = this.fileList.find(f => f.id === fileId);
-        
+
         // Handle row actions (view, download, delete, etc.)
         this.showToast('Info', `Action on file: ${file.name}`, 'info');
+    }
+
+    handleDeleteFile(event) {
+        const fileId = event.currentTarget.dataset.id;
+        const file = this.fileList.find(f => f.id === fileId);
+
+        if (!file) {
+            this.showToast('Error', 'File not found', 'error');
+            return;
+        }
+
+        // For mock data (files without a real Salesforce ID), just remove from list
+        if (!file.documentId || typeof file.id !== 'string' || !file.id.startsWith('a0')) {
+            this.fileList = this.fileList.filter(f => f.id !== fileId);
+            this.showingFiles = this.fileList.length;
+            this.showToast('Success', `${file.name} has been deleted`, 'success');
+            return;
+        }
+
+        // For real Salesforce records, call Apex method
+        deleteFile({ fileId: file.id })
+            .then(result => {
+                const response = JSON.parse(result);
+                if (response.success) {
+                    // Remove file from the list
+                    this.fileList = this.fileList.filter(f => f.id !== fileId);
+                    this.showingFiles = this.fileList.length;
+                    this.showToast('Success', `${file.name} has been deleted`, 'success');
+                } else {
+                    this.showToast('Error', response.message, 'error');
+                }
+            })
+            .catch(error => {
+                this.showToast('Error', `Failed to delete file: ${error.body?.message || error.message}`, 'error');
+            });
     }
 }

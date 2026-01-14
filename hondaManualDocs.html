@@ -210,13 +210,22 @@
                                             </div>
                                         </td>
                                         <td role="gridcell">
-                                            <lightning-button-icon 
-                                                icon-name="utility:preview" 
-                                                alternative-text="Preview" 
+                                            <lightning-button-icon
+                                                icon-name="utility:preview"
+                                                alternative-text="Preview"
                                                 title="Preview"
                                                 data-id={file.id}
                                                 onclick={handleRowAction}
-                                                class="slds-button_icon-border-filled">
+                                                class="slds-button_icon-border-filled slds-m-right_xx-small">
+                                            </lightning-button-icon>
+                                            <lightning-button-icon
+                                                icon-name="utility:delete"
+                                                alternative-text="Delete"
+                                                title="Delete"
+                                                data-id={file.id}
+                                                onclick={handleDeleteFile}
+                                                variant="bare"
+                                                class="slds-button_icon-error">
                                             </lightning-button-icon>
                                         </td>
                                     </tr>
